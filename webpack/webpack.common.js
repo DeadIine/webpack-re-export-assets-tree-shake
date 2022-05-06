@@ -3,7 +3,6 @@ const convert = require('koa-connect');
 const history = require('connect-history-api-fallback');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const commonPaths = require('./paths');
 
 module.exports = {
@@ -17,17 +16,6 @@ module.exports = {
             loader: 'file-loader',
             options: {
               outputPath: commonPaths.imagesFolder,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.(woff2|ttf|woff|eot)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              outputPath: commonPaths.fontsFolder,
             },
           },
         ],
@@ -55,11 +43,6 @@ module.exports = {
     }),
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
-    }),
-    new ESLintPlugin({
-      extensions: ['js', 'jsx', 'ts', 'tsx'],
-      fix: true,
-      emitWarning: process.env.NODE_ENV !== 'production',
     }),
   ],
 };
